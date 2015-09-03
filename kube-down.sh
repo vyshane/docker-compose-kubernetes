@@ -1,5 +1,5 @@
 #!/bin/bash
-cd k8s
+cd kubernetes
 docker-compose stop
 docker-compose rm -f
 

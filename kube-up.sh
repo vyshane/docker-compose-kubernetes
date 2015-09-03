@@ -1,3 +1,3 @@
 #!/bin/bash
-cd k8s
+cd kubernetes
 docker-compose up
