@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Stopping replaction controllers, services and pods..."
+echo "Stopping replication controllers, services and pods..."
 kubectl stop replicationcontrollers,services,pods --all
 
 cd kubernetes
