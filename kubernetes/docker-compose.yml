@@ -21,3 +21,13 @@ proxy:
   net: host
   privileged: true
   command: ['/hyperkube', 'proxy', '--master=http://127.0.0.1:8080', '--v=2']
+
+kube2sky:
+  image: gcr.io/google_containers/kube2sky:1.11
+  net: host
+  command: ['--kube_master_url=http://127.0.0.1:8080', '--domain=cluster.local']
+
+skydns:
+  image: gcr.io/google_containers/skydns:2015-03-11-001
+  net: host
+  command: ['--machines=http://localhost:4001', '--addr=0.0.0.0:53', '--domain=cluster.local']

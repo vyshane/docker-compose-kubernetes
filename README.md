@@ -22,6 +22,12 @@ NAME        LABELS                             STATUS
 127.0.0.1   kubernetes.io/hostname=127.0.0.1   Ready
 ```
 
+To activate [DNS](https://github.com/kubernetes/kubernetes/blob/v1.0.3/cluster/addons/dns/README.md):
+
+```sh
+./kube-dns-up.sh <docker_host_ip_address>
+```
+
 To destroy the cluster:
 
 ```shell
