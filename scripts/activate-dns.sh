@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+echo "Activating DNS in the cluster..."
+
 kubectl --namespace=kube-system create -f - << EOF
 apiVersion: v1
 kind: Endpoints

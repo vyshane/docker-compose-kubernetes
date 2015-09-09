@@ -3,7 +3,7 @@
 machine=$(docker-machine active)
 
 if [[ $? != 0 ]]; then
-  echo "You must first do a start a docker-machine"
+  echo "You must first start boot2docker via docker-machine"
   exit 1
 fi
 
