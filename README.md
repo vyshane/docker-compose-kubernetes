@@ -16,6 +16,7 @@ On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM
 
 ```sh
 docker-machine start <name>
+eval "$(docker-machine env $(docker-machine active))"
 ```
 
 Then, to launch a Kubernetes cluster in boot2docker via Docker Machine:
