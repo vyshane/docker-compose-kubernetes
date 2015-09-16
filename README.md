@@ -1,4 +1,6 @@
-# Launch a local [Kubernetes](http://kubernetes.io) cluster via [Docker Compose](https://www.docker.com/docker-compose)
+# Launch [Kubernetes](http://kubernetes.io) using Docker via [Docker Compose](https://www.docker.com/docker-compose)
+
+The Kubernetes [DNS addon](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns) will also set up for you.
 
 ## Starting Kubernetes on Linux
 
