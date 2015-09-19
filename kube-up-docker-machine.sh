@@ -14,3 +14,4 @@ cd ../scripts
 ./docker-machine-port-forwarding.sh
 ./wait-for-kubernetes.sh
 ./activate-dns.sh $(docker-machine ip $machine)
+./activate-kube-ui.sh

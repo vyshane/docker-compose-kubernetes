@@ -1,6 +1,9 @@
 # Launch [Kubernetes](http://kubernetes.io) using Docker via [Docker Compose](https://www.docker.com/docker-compose)
 
-The Kubernetes [DNS addon](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns) will also set up for you.
+The following will also be set up for you:
+
+ * The Kubernetes [DNS addon](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/dns)
+ * [Kube UI](http://kubernetes.io/v1.0/docs/user-guide/ui.html)
 
 ## Starting Kubernetes on Linux
 
@@ -36,6 +39,10 @@ kubectl get nodes
 NAME        LABELS                             STATUS
 127.0.0.1   kubernetes.io/hostname=127.0.0.1   Ready
 ```
+
+## Kube UI
+
+You can access Kube UI at http://localhost:8080/ui.
 
 ## To destroy the cluster
 
