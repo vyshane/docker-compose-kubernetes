@@ -13,8 +13,6 @@ On Linux we'll run Kubernetes using a local Docker Engine. You will also need Do
 ./kube-up.sh
 ```
 
-For the docker host address, use your local IP address. The IP address is needed to set up DNS for the cluster.
-
 ## Starting Kubernetes on OS X
 
 On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine, Docker Compose, and the kubectl tool installed locally. First start your boot2docker VM:
@@ -24,7 +22,7 @@ docker-machine start <name>
 eval "$(docker-machine env $(docker-machine active))"
 ```
 
-Then, to launch a Kubernetes cluster in boot2docker via Docker Machine:
+Then, launch the Kubernetes cluster in boot2docker via Docker Machine:
 
 ```sh
 ./kube-up.sh
@@ -32,7 +30,7 @@ Then, to launch a Kubernetes cluster in boot2docker via Docker Machine:
 
 The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker. The default password for the boot2docker docker user is `tcuser`.
 
-You can then check if Kubernetes is running:
+## Checking if Kubernetes Is Running
 
 ```sh
 kubectl get nodes
