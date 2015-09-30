@@ -1,12 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]
-then
-  echo "Usage: $0 <docker_host_ip_address>"
-  exit 1
-fi
-
-echo "Activating DNS in the cluster..."
+dns_host=$(echo $DOCKER_HOST | awk -F'[/:]' '{print $4}')
 
 kubectl --namespace=kube-system create -f - << EOF
 apiVersion: v1
@@ -16,7 +10,7 @@ metadata:
   namespace: kube-system
 subsets:
 - addresses:
-  - IP: $1
+  - IP: $dns_host
   ports:
   - port: 53
     protocol: UDP

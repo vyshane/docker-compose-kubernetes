@@ -1,10 +1,15 @@
 #!/bin/bash
 echo "Stopping replication controllers, services and pods..."
 kubectl stop replicationcontrollers,services,pods --all
+if [ $? != 0 ]; then
+    echo "Kubernetes already down?"
+fi
 
 cd kubernetes
-docker-compose stop
-docker-compose rm -f -v
+if [ ! -z "$(docker-compose ps -q)" ]; then
+    docker-compose stop
+    docker-compose rm -f -v
+fi
 
 k8s_containers=`docker ps -a -f "name=k8s_" -q`
 
