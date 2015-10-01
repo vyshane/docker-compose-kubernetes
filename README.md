@@ -33,12 +33,12 @@ The script will set up port forwarding so that you can use kubectl locally witho
 ## Checking if Kubernetes Is Running
 
 ```sh
-kubectl get nodes
-NAME        LABELS                             STATUS
-127.0.0.1   kubernetes.io/hostname=127.0.0.1   Ready
+kubectl cluster-info
+Kubernetes master is running at http://localhost:8080
+KubeUI is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui
 ```
 
-## Kube UI
+## Accessing Kube UI
 
 You can access Kube UI at http://localhost:8080/ui.
 
