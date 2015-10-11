@@ -2,7 +2,7 @@
 #
 # Set up kubectl port forwarding to boot2docker VM if needed.
 
-machine=${DOCKER_MACHINE_VM_NAME:=docker-vm}
+machine=$(docker-machine active)
 keyfile="~/.docker/machine/machines/$machine/id_rsa"
 
 function forward_port_if_not_forwarded {

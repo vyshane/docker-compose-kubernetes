@@ -3,7 +3,8 @@
 # Set up routes for accessing services and DNS from MacOS
 
 # assume 'docker-vm' as the default docker machine name
-machine=${DOCKER_MACHINE_VM_NAME:=docker-vm}
+#machine=${DOCKER_MACHINE_VM_NAME:=docker-vm}
+machine=$(docker-machine active)
 docker_net=${DOCKER_MACHINE_NET:=10.0.0.0/16}
 
 rx='([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
