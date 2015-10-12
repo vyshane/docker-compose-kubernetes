@@ -1,8 +1,11 @@
 #!/bin/bash
-echo "Waiting for Kubernetes cluster to become available..."
+source ../.settings
+
+printf "${yellow}Waiting for Kubernetes cluster to become available${reset}"
 
 until $(kubectl cluster-info &> /dev/null); do
     sleep 1
+	printf "${yellow}.${reset}"
 done
 
-echo "Kubernetes cluster is up."
+printf "\n\n${green}   ${checkmark} Kubernetes cluster is up.${reset}\n\n"

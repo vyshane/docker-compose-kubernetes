@@ -1,8 +1,19 @@
 #!/bin/bash
 
+source ../.settings
+
 dns_host=$(echo $DOCKER_HOST | awk -F'[/:]' '{print $4}')
 
-kubectl --namespace=kube-system create -f - << EOF
+printf "${yellow}Activating DNS...${reset}\n"
+
+dns_cluster_ip=$(kubectl get services --namespace=kube-system kube-dns --template={{.spec.clusterIP}} 2> /dev/null)
+
+if [ -n "$dns_cluster_ip" ]; then
+	printf "\n${yellow}   ${warning} Kube DNS service already exists. ClusterIP: $dns_cluster_ip${reset}\n\n"
+	exit 0;
+fi
+
+kubectl --namespace=kube-system create -f  - << EOF > /dev/null
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -17,7 +28,7 @@ subsets:
     name: dns
 EOF
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl --namespace=kube-system create -f - << EOF > /dev/null
 kind: Service
 apiVersion: v1
 metadata:
@@ -30,3 +41,5 @@ spec:
     port: 53
     protocol: UDP
 EOF
+
+check_rc "Successfully started kube-dns" "Could not start kube-dns"

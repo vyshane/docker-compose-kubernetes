@@ -2,11 +2,13 @@
 #
 # starts a local Docker registry that can be used to make local images available to k8s
 
+source ../.settings
+
 function start_docker_registry {
 	action=$1
 	run_new_registry_cmd="docker run -d -p 5000:5000 --restart=always --name registry registry:2"
 	if [ $? -ne 0 ]; then
-		echo "docker command failed. Make sure that docker is running and shell environment is sane"
+		printf "\n${red}  ${error}docker command failed. Make sure that docker is running and shell environment is sane${reset}\n"
 		exit -1
 	fi
 
@@ -16,24 +18,29 @@ function start_docker_registry {
 	stop_registry_cmd="docker stop $running_registry"
  	case "$action" in
 		"start") 
+			printf "${yellow}Starting docker registry...${reset}\n"
 			if [ -z "$running_registry" ]; then
-				echo "Starting docker registry..."
 				if [ -z "$existing_registry" ]; then
-					eval $run_new_registry_command
+					eval $run_new_registry_command &> /dev/null
 				else
-					echo "Using existing container: $existing_registry"
-					eval $run_existing_registry_cmd
+					#printf "${yellow}Using existing container: $existing_registry${reset}\n"
+					eval $run_existing_registry_cmd &> /dev/null
 				fi
+
+				check_rc "Docker registry started" "Docker registry startup failed"
+
 			else
-				echo "Docker registry already running. Container ID: $running_registry"
+				printf "\n${yellow}   ${warning} Docker registry already running. Container ID: $running_registry${reset}\n\n"
 			fi
 			;;
 		"stop")
-			if [ -z "$existing_registry" ]; then
-				echo "Docker registry not running. Doing nothing"
+			if [ -z "$running_registry" ]; then
+				printf "\n${yellow}   ${warning} Docker registry not running.${reset}\n\n"
 			else
-				echo "Shutting down docker registry. Container ID: $running_registry"
-				eval $stop_registry_cmd
+				printf "${yellow}Shutting down docker registry. Container ID: $running_registry${reset}\n"
+				eval $stop_registry_cmd &> /dev/null
+
+				check_rc "Docker registry stopped" "Docker registry shutdown failed"
 			fi
 			;;
 		"check")

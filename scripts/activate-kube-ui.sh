@@ -1,32 +1,41 @@
 #!/bin/bash
 
-echo "Activating Kube UI..."
+source ../.settings
 
-kubectl --namespace=kube-system create -f - << EOF
+printf "${yellow}Activating Kube UI...${reset}\n"
+
+kube_ui_cluster_ip=$(kubectl get services --namespace=kube-system kube-ui --template={{.spec.clusterIP}} 2> /dev/null)
+
+if [ -n "$kube_ui_cluster_ip" ]; then
+	printf "\n${yellow}   ${warning} Kube-UI service already exists. ClusterIP: $kube_ui_cluster_ip${reset}\n\n"
+	exit 0
+fi
+
+kubectl --namespace=kube-system create -f - << EOF > /dev/null
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: kube-ui-v2
+  name: kube-ui-v3
   namespace: kube-system
   labels:
     k8s-app: kube-ui
-    version: v2
+    version: v3
     kubernetes.io/cluster-service: "true"
 spec:
   replicas: 1
   selector:
     k8s-app: kube-ui
-    version: v2
+    version: v3
   template:
     metadata:
       labels:
         k8s-app: kube-ui
-        version: v2
+        version: v3
         kubernetes.io/cluster-service: "true"
     spec:
       containers:
       - name: kube-ui
-        image: gcr.io/google_containers/kube-ui:v2
+        image: gcr.io/google_containers/kube-ui:v3
         resources:
           limits:
             cpu: 100m
@@ -41,7 +50,7 @@ spec:
           timeoutSeconds: 5
 EOF
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl --namespace=kube-system create -f - << EOF > /dev/null
 apiVersion: v1
 kind: Service
 metadata:
@@ -58,3 +67,5 @@ spec:
   - port: 80
     targetPort: 8080
 EOF
+
+check_rc "Successfully started kube-ui" "Could not start kube-ui"
