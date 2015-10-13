@@ -28,7 +28,7 @@ Then, launch the Kubernetes cluster in boot2docker via Docker Machine:
 ./kube-up.sh
 ```
 
-The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker. The default password for the boot2docker docker user is `tcuser`.
+The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker.
 
 ## Checking if Kubernetes Is Running
 
