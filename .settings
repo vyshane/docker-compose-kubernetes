@@ -16,7 +16,7 @@ start_registry=true
 start_dns=true
 start_ui=true
 
-# helpers
+# helpers todo this should be somewhere else; or rename the settings file into 'common.sh'
 function check_rc {
 	success_message=$1
 	error_message=$2
