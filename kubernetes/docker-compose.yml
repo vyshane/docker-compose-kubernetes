@@ -25,9 +25,9 @@ proxy:
 kube2sky:
   image: gcr.io/google_containers/kube2sky:1.11
   net: host
-  command: ['--kube_master_url=http://127.0.0.1:8080', '--domain=cluster.local']
+  command: ['--kube_master_url=http://127.0.0.1:8080', '--domain=cluster.local', '--v=2']
 
 skydns:
   image: gcr.io/google_containers/skydns:2015-03-11-001
   net: host
-  command: ['--machines=http://localhost:4001', '--addr=0.0.0.0:53', '--domain=cluster.local']
+  command: ['--machines=http://localhost:4001', '--addr=0.0.0.0:53', '--domain=cluster.local', '-nameservers=8.8.8.8:53,8.8.4.4:53']
