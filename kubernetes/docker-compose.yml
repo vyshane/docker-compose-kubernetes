@@ -28,6 +28,6 @@ kube2sky:
   command: ['--kube_master_url=http://127.0.0.1:8080', '--domain=cluster.local']
 
 skydns:
-  image: gcr.io/google_containers/skydns:2015-03-11-001
+  image: gcr.io/google_containers/skydns:2015-10-13-8c72f8c
   net: host
-  command: ['--machines=http://localhost:4001', '--addr=0.0.0.0:53', '--domain=cluster.local']
+  command: ['--machines=http://localhost:4001', '--addr=0.0.0.0:53', '--domain=cluster.local', '-ns-rotate=false']
