@@ -4,7 +4,7 @@ etcd:
   command: ['/usr/local/bin/etcd', '--addr=127.0.0.1:4001', '--bind-addr=0.0.0.0:4001', '--data-dir=/var/etcd/data']
 
 master:
-  image: gcr.io/google_containers/hyperkube:v1.0.6
+  image: gcr.io/google_containers/hyperkube:v1.0.7
   net: host
   privileged: true
   volumes:
@@ -17,7 +17,7 @@ master:
   command: ['/hyperkube', 'kubelet', '--containerized', '--hostname-override=127.0.0.1', '--address=0.0.0.0', '--api-servers=http://localhost:8080', '--config=/etc/kubernetes/manifests', '--cluster-dns=10.0.0.10', '--cluster-domain=cluster.local']
 
 proxy:
-  image: gcr.io/google_containers/hyperkube:v1.0.6
+  image: gcr.io/google_containers/hyperkube:v1.0.7
   net: host
   privileged: true
   command: ['/hyperkube', 'proxy', '--master=http://127.0.0.1:8080', '--v=2']
