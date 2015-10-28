@@ -28,26 +28,23 @@ Then, launch the Kubernetes cluster in boot2docker via Docker Machine:
 ./kube-up.sh
 ```
 
-The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker. The default password for the boot2docker docker user is `tcuser`.
+The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker.
 
 ## Controlling Addons (DNS, UI)
-You can use the `.settings` file to tell the `kube-up.sh` script which additional services to start. The default is
-to start all addons:
+You can use the the following options to disable specific additional services. The default is
+to start all addons, __except__ the local Docker Registry:
 
 ```
-# startup settings
-port_forward=true
-add_route=true
-start_registry=true
-start_dns=true
-start_ui=true
+Usage: kube-up.sh [-fndursh]
+Available options are:
+	-f  disable forward to port 8080 on docker machine (required for kubectl)
+	-n  disable adding route to enable local name resolution via skyDNS
+	-d  disable skyDNS
+	-u  disable kube-ui
+	-r  start local docker registry
+	-h  show this help text
+	-s  silent mode
 ```
-
-- `port_forward` will setup the SSH tunnel for accessing the API server via `kubectl`
-- `add_route` will create a custom routing entry to enable local name resolution via the configured cluster DNS
-- `start_registry` will start a private docker registry (can be used to make local images available to k8s)
-- `start_dns` will start skydns and the kube2sky bridge
-- `start_ui` will start the k8s UI
 
 ## Checking if Kubernetes Is Running
 

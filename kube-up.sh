@@ -9,21 +9,19 @@ start_ui=0
 start_registry=0
 silent=0
 
-USAGE="Usage: $(basename $0) [-fndursh]"
-
 read -r -d '' HELP_TEXT <<'USAGE_TEXT'
+Usage: kube-up.sh [-fndursh]
 Available options are:
-	-f  do NOT forward port 8080 to docker machine (required for kubectl)
-	-n  add route to enable local name resolution via skyDNS
-	-d  start skyDNS
-	-u  start kube-ui
+	-f  disable forward to port 8080 on docker machine (required for kubectl)
+	-n  disable adding route to enable local name resolution via skyDNS
+	-d  disable skyDNS
+	-u  disable kube-ui
 	-r  start local docker registry
-	-h  show this help text
 	-s  silent mode
+	-h  show this help text
 USAGE_TEXT
 
 function show_help {
-	echo "$USAGE"
 	echo "$HELP_TEXT"
     exit 0
 }
@@ -36,11 +34,13 @@ while getopts "fndush?:" opt; do
         ;;
     f)  port_forward=0
         ;;
-    n)  add_route=1
+    n)  add_route=0
         ;;
-	d)  start_dns=1
+	d)  start_dns=0
 		;;
-	u)  start_ui=1
+	u)  start_ui=0
+		;;
+	r)  start_registry=0
 		;;
 	s)  silent=1
 		;;
