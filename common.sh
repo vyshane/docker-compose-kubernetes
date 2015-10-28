@@ -9,13 +9,6 @@ checkmark="\xE2\x9C\x93"
 warning="\xE2\x9A\xA0"
 error="\xE2\x9C\x97"
 
-# startup settings
-port_forward=true
-add_route=true
-start_registry=true
-start_dns=true
-start_ui=true
-
 # helpers todo this should be somewhere else; or rename the settings file into 'common.sh'
 function check_rc {
 	success_message=$1

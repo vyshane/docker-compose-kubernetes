@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../.settings
+source ../common.sh
 
 printf "${yellow}Activating Kube UI...${reset}\n"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source .settings
+source ./common.sh
 
 printf "${yellow}Stopping replication controllers, services and pods...${reset}\n"
 
@@ -23,7 +23,7 @@ if [ ! -z "$k8s_containers" ]; then
     docker rm -f -v $k8s_containers
 fi
 
-cd ../scripts 
+cd ../scripts
 if [ -n "$start_registry" ]; then
 	./start-docker-registry.sh stop
 fi

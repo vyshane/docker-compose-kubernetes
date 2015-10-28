@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Set up routes for accessing services and DNS from MacOS
-source ../.settings
+source ../common.sh
 
 machine=$(docker-machine active)
 docker_net=${DOCKER_MACHINE_NET:=10.0.0.0/16}
@@ -12,7 +12,7 @@ function add_route {
 	machine_name=$1
 	docker_network=$2
 	docker_machine_ip=$(docker-machine ip $machine_name)
-	if [ $? -ne 0 ]; then 
+	if [ $? -ne 0 ]; then
 		exit -1;
 	fi
 
@@ -26,7 +26,7 @@ function add_route {
 			sudo route -n add $docker_network $docker_machine_ip
 			if [ $? -eq 0 ]; then
 				printf "\n${green}   ${checkmark} Successfully added route '$docker_net' -> '${docker_machine_ip}' ${reset}\n\n"
-			else 
+			else
 				printf "\n${error}   ${error} Cannot add route\n\n"
 			fi
 		elif [ "$existing_route_gateway" == "$docker_machine_ip" ]; then

@@ -2,7 +2,7 @@
 #
 # starts a local Docker registry that can be used to make local images available to k8s
 
-source ../.settings
+source ../common.sh
 
 function start_docker_registry {
 	action=$1
@@ -17,7 +17,7 @@ function start_docker_registry {
 	running_registry=$(docker ps | grep registry:2 | awk '{print $1}')
 	stop_registry_cmd="docker stop $running_registry"
  	case "$action" in
-		"start") 
+		"start")
 			printf "${yellow}Starting docker registry...${reset}\n"
 			if [ -z "$running_registry" ]; then
 				if [ -z "$existing_registry" ]; then

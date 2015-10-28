@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ../.settings
+source ../common.sh
 
 dns_host=$(echo $DOCKER_HOST | awk -F'[/:]' '{print $4}')
 

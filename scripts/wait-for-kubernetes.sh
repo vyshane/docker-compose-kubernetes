@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../.settings
+source ../common.sh
 
 printf "${yellow}Waiting for Kubernetes cluster to become available${reset}"
 

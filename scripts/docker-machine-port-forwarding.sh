@@ -2,7 +2,7 @@
 #
 # Set up kubectl port forwarding to boot2docker VM if needed.
 
-source ../.settings
+source ../common.sh
 
 function forward_port_if_not_forwarded {
     port=$1
