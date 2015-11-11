@@ -11,7 +11,7 @@ metadata:
   namespace: kube-system
 subsets:
 - addresses:
-  - IP: $dns_host
+  - ip: $dns_host
   ports:
   - port: 53
     protocol: UDP
