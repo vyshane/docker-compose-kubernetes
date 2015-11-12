@@ -19,3 +19,6 @@ function check_rc {
 		printf "\n${red}   ${error} $error_message ${reset}\n\n"
 	fi
 }
+
+
+

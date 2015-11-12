@@ -3,9 +3,9 @@ source ./common.sh
 
 # CLI arguments
 port_forward=1
-add_route=0
-start_dns=0
-start_ui=0
+add_route=1
+start_dns=1
+start_ui=1
 start_registry=0
 silent=0
 
@@ -26,7 +26,7 @@ function show_help {
     exit 0
 }
 
-while getopts "fndush?:" opt; do
+while getopts "fndushr?:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -40,7 +40,7 @@ while getopts "fndush?:" opt; do
 		;;
 	u)  start_ui=0
 		;;
-	r)  start_registry=0
+	r)  start_registry=1
 		;;
 	s)  silent=1
 		;;
