@@ -1,11 +1,14 @@
 #!/bin/bash
+
+this_dir=$(cd -P "$(dirname "$0")" && pwd)
+
 echo "Stopping replication controllers, services and pods..."
 kubectl stop replicationcontrollers,services,pods --all
 if [ $? != 0 ]; then
     echo "Kubernetes already down?"
 fi
 
-cd kubernetes
+cd "$this_dir/kubernetes"
 if [ ! -z "$(docker-compose ps -q)" ]; then
     docker-compose stop
     docker-compose rm -f -v

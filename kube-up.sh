@@ -8,16 +8,18 @@ require_command_exists kubectl
 require_command_exists docker
 require_command_exists docker-compose
 
+this_dir=$(cd -P "$(dirname "$0")" && pwd)
+
 docker info > /dev/null
 if [ $? != 0 ]; then
     echo "A running Docker engine is required. Is your Docker host up?"
     exit 1
 fi
 
-cd kubernetes
+cd "$this_dir/kubernetes"
 docker-compose up -d
 
-cd ../scripts
+cd "$this_dir/scripts"
 
 if [ $(command -v docker-machine) ] &&  [ ! -z "$(docker-machine active)" ]; then
     ./docker-machine-port-forwarding.sh
