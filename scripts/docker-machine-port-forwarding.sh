@@ -16,8 +16,10 @@ function forward_port_if_not_forwarded {
     local machine=$(active_machine)
 
     if [ -n "$machine" ]; then
-        if ! pgrep -f "ssh.*$port:localhost:$port" > /dev/null; then
+        if ! pgrep -f "ssh.*$port:localhost" > /dev/null; then
             docker-machine ssh "$machine" -f -N -L "$port:localhost:$port"
+        else
+            echo "An ssh tunnel on port $port already exists.  The kubernetes cluster won't be reachable from local kubectl."
         fi
     fi
 }
