@@ -21,9 +21,8 @@ docker-compose up -d
 
 cd "$this_dir/scripts"
 
-if [ $(command -v docker-machine) ] &&  [ ! -z "$(docker-machine active)" ]; then
-    ./docker-machine-port-forwarding.sh
-fi
+source docker-machine-port-forwarding.sh
+forward_port_if_not_forwarded $KUBERNETES_API_PORT
 
 ./wait-for-kubernetes.sh
 ./activate-dns.sh
