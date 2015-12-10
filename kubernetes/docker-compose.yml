@@ -6,6 +6,7 @@ etcd:
 master:
   image: gcr.io/google_containers/hyperkube:v1.1.2
   net: host
+  pid: host
   privileged: true
   volumes:
     - /:/rootfs:ro
@@ -19,6 +20,7 @@ master:
 proxy:
   image: gcr.io/google_containers/hyperkube:v1.1.2
   net: host
+  pid: host
   privileged: true
   command: ['/hyperkube', 'proxy', '--master=http://127.0.0.1:8080', '--v=2']
 
