@@ -2,8 +2,8 @@
 
 this_dir=$(cd -P "$(dirname "$0")" && pwd)
 
-echo "Stopping replication controllers, services and pods..."
-kubectl stop replicationcontrollers,services,pods --all
+echo "Removing replication controllers, services, pods and secrets..."
+kubectl delete replicationcontrollers,services,pods,secrets --all
 if [ $? != 0 ]; then
     echo "Kubernetes already down?"
 fi

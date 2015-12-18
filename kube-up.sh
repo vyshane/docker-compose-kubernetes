@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 require_command_exists() {
     command -v "$1" >/dev/null 2>&1 || { echo "$1 is required but is not installed. Aborting." >&2; exit 1; }
 }
@@ -25,5 +27,6 @@ source docker-machine-port-forwarding.sh
 forward_port_if_not_forwarded $KUBERNETES_API_PORT
 
 ./wait-for-kubernetes.sh
+./create-kube-system-namespace.sh
 ./activate-dns.sh
 ./activate-kube-ui.sh
