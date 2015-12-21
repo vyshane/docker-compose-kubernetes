@@ -25,7 +25,7 @@ proxy:
   command: ['/hyperkube', 'proxy', '--master=http://127.0.0.1:8080', '--v=2']
 
 kube2sky:
-  image: gcr.io/google_containers/kube2sky:1.11
+  image: gcr.io/google_containers/kube2sky:1.12
   net: host
   command: ['--kube_master_url=http://127.0.0.1:8080', '--domain=cluster.local']
 
