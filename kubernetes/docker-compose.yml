@@ -9,7 +9,6 @@ master:
   pid: host
   privileged: true
   volumes:
-    - /:/rootfs:ro
     - /sys:/sys:ro
     - /dev:/dev
     - /var/lib/docker/:/var/lib/docker:ro
