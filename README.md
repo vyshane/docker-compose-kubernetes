@@ -15,7 +15,7 @@ On Linux we'll run Kubernetes using a local Docker Engine. You will also need Do
 
 ## Starting Kubernetes on OS X
 
-On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine, Docker Compose, and the kubectl tool installed locally. First start your boot2docker VM:
+On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine (v0.5.0 or newer), Docker Compose, and the kubectl tool installed locally. First start your boot2docker VM:
 
 ```sh
 docker-machine start <name>
