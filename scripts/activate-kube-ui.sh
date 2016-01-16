@@ -2,7 +2,7 @@
 
 echo "Activating Kube UI..."
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl -s http://localhost:8080 --namespace=kube-system create -f - << EOF
 apiVersion: v1
 kind: ReplicationController
 metadata:
@@ -41,7 +41,7 @@ spec:
           timeoutSeconds: 5
 EOF
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl -s http://localhost:8080 --namespace=kube-system create -f - << EOF
 apiVersion: v1
 kind: Service
 metadata:

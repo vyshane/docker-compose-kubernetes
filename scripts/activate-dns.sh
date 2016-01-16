@@ -3,7 +3,7 @@
 dns_host=$(echo $DOCKER_HOST | awk -F'[/:]' '{print $4}')
 : ${dns_host:=127.0.0.1}
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl -s http://localhost:8080 --namespace=kube-system create -f - << EOF
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -18,7 +18,7 @@ subsets:
     name: dns
 EOF
 
-kubectl --namespace=kube-system create -f - << EOF
+kubectl -s http://localhost:8080 --namespace=kube-system create -f - << EOF
 kind: Service
 apiVersion: v1
 metadata:

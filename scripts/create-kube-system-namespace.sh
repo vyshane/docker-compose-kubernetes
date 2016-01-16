@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kubectl create -f - << EOF
+kubectl -s http://localhost:8080 create -f - << EOF
 kind: Namespace
 apiVersion: v1
 metadata:
