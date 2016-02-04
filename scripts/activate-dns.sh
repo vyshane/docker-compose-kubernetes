@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dns_host=$(echo $DOCKER_HOST | awk -F'[/:]' '{print $4}')
-: ${dns_host:=127.0.0.1}
+: ${dns_host:=$(ifconfig docker0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*')}
 
 kubectl --namespace=kube-system create -f - << EOF
 apiVersion: v1
