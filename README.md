@@ -15,6 +15,12 @@ On Linux we'll run Kubernetes using a local Docker Engine. You will also need Do
 
 ## Starting Kubernetes on OS X
 
+```sh
+brew install kubernetes-cli
+brew install docker
+brew install docker-compose
+```
+
 On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine (v0.5.0 or newer), Docker Compose, and the kubectl tool installed locally. First start your boot2docker VM:
 
 ```sh
@@ -49,4 +55,3 @@ You can access Kube UI at http://localhost:8080/ui.
 ```
 
 This will also remove any services, replication controllers and pods that are running in the cluster.
-
