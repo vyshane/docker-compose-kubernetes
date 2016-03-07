@@ -14,6 +14,7 @@ master:
     - /var/lib/docker/:/var/lib/docker:ro
     - /var/lib/kubelet/:/var/lib/kubelet:rw
     - /var/run:/var/run:rw
+    - $PWD/master.json:/etc/kubernetes/manifest/master.json
   command: ['nsenter', '--target=1', '--mount', '--wd=.', '--', './hyperkube', 'kubelet', '--hostname-override=127.0.0.1', '--address=0.0.0.0', '--api-servers=http://localhost:8080', '--config=etc/kubernetes/manifests', '--cluster-dns=10.0.0.10', '--cluster-domain=cluster.local']
 
 proxy:
