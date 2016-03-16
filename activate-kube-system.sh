@@ -1,10 +1,10 @@
 #!/bin/bash
 
+echo "Activating Kube System"
 kubectl create -f - << EOF
-kind: Namespace
 apiVersion: v1
+kind: Namespace
 metadata:
   name: kube-system
-  labels:
-    name: kube-system
 EOF
+
