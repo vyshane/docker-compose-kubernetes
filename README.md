@@ -1,4 +1,4 @@
-# Launch [Kubernetes](http://kubernetes.io) using Docker via [Docker Compose](https://www.docker.com/docker-compose)
+# Launch [Kubernetes](http://kubernetes.io) using Docker
 
 The following will also be set up for you:
 
@@ -7,7 +7,7 @@ The following will also be set up for you:
 
 ## Starting Kubernetes on Linux
 
-On Linux we'll run Kubernetes using a local Docker Engine. You will also need Docker Compose as well as the kubectl tool. To launch the cluster:
+On Linux we'll run Kubernetes using a local Docker Engine. You will also need the kubectl tool. To launch the cluster:
 
 ```sh
 ./kube-up.sh
@@ -15,11 +15,11 @@ On Linux we'll run Kubernetes using a local Docker Engine. You will also need Do
 
 ## Starting Kubernetes on OS X
 
-On OS X we'll launch Kubernetes inside a [boot2docker](http://boot2docker.io) VM via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine (v0.5.0 or newer), Docker Compose, and the kubectl tool installed locally. First start your boot2docker VM:
+On OS X we'll launch Kubernetes via [Docker Machine](https://docs.docker.com/machine/). You will need to have Docker Machine (v0.5.0 or newer), and the kubectl tool installed locally. First start your boot2docker VM:
 
 ```sh
 docker-machine start <name>
-eval "$(docker-machine env $(docker-machine active))"
+eval "$(docker-machine env <name>)"
 ```
 
 Then, launch the Kubernetes cluster in boot2docker via Docker Machine:
@@ -28,19 +28,18 @@ Then, launch the Kubernetes cluster in boot2docker via Docker Machine:
 ./kube-up.sh
 ```
 
-The script will set up port forwarding so that you can use kubectl locally without having to ssh into boot2docker.
+The script will set up the kubectl contextso that you can use kubectl locally without having to ssh into boot2docker.
 
 ## Checking if Kubernetes Is Running
 
 ```sh
 kubectl cluster-info
 Kubernetes master is running at http://localhost:8080
-KubeUI is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-ui
 ```
 
 ## Accessing Kube UI
 
-You can access Kube UI at http://localhost:8080/ui.
+Not working at the moment: You can access Kube UI at http://localhost:8080/ui.
 
 ## To destroy the cluster
 
@@ -49,4 +48,3 @@ You can access Kube UI at http://localhost:8080/ui.
 ```
 
 This will also remove any services, replication controllers and pods that are running in the cluster.
-
