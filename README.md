@@ -1,3 +1,8 @@
+
+This project will not be updated to support Kubernetes 1.2. It's easier to start Kubernetes from version 1.2.0 onwards. Only one `docker run` command is required. Therefore it doesn't really make sense to use Docker Compose any more.
+
+I will be deprecating this project in favour of [kid](https://github.com/vyshane/kid), which is a single Bash script that you can place in your `$PATH` and call from anywhere.
+
 # Launch [Kubernetes](http://kubernetes.io) using Docker via [Docker Compose](https://www.docker.com/docker-compose)
 
 The following will also be set up for you:
