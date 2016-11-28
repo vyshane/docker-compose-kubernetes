@@ -20,7 +20,10 @@ fi
 
 cd "$this_dir/kubernetes"
 docker-compose up -d
-
+docker cp master.json kubernetes_master_1:etc/kubernetes/manifests
+docker commit kubernetes_master_1
+docker stop kubernetes_master_1
+docker start kubernetes_master_1
 cd "$this_dir/scripts"
 
 source docker-machine-port-forwarding.sh
